@@ -1,6 +1,6 @@
 # clanfortune
 KOLmafia Clanfortune Script
-Ok, I've uploaded my script for this you can download it in Kolmafia with the CLI command:
+
 svn checkout https://github.com/stewbeef/clanfortune/branches/master
 
 clanfortune help
