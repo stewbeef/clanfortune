@@ -1,2 +1,0 @@
-# clanfortune
-KOLmafia Clanfortune Script
