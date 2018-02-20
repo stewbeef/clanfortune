@@ -3,6 +3,7 @@ KOLmafia Clanfortune Script
 Edit: Fixed a bug!  Added new feature to quickly set defaults
 
 Ok, I've uploaded my script for this you can download it in Kolmafia with the CLI command:
+
 svn checkout https://github.com/stewbeef/clanfortune/branches/release
 (um, remove the link bit that the chat added in though)
 (if you installed this when there was a bug, you'll need to remove it with svn delete clanfortune)
@@ -52,6 +53,13 @@ defaults,1st answer,name -- saves name as first answer when sending requests
 defaults,2nd answer,name -- saves name as second answer when sending requests
 defaults,3rd answer,name -- saves name as third answer when sending requests
 
+defaults,info
+Default 1st response: beer
+Default 2nd response: robin
+Default 3rd response: thin
+Default 1st answer: pizza
+Default 2nd answer: batman
+Default 3rd answer: thick
 print defaults -- prints all set defaults
 
 quicksend -- sends default answers to each default contact in order
