@@ -5,7 +5,8 @@ Edit: Fixed a bug!  Added new feature to quickly set defaults
 Ok, I've uploaded my script for this you can download it in Kolmafia with the CLI command:
 
 svn checkout https://github.com/stewbeef/clanfortune/branches/release
-(um, remove the link bit that the chat added in though)
+
+
 (if you installed this when there was a bug, you'll need to remove it with svn delete clanfortune)
 
 clanfortune help
