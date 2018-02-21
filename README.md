@@ -64,9 +64,11 @@ Right now all commands are seperated by commans without spaces.  When I retool t
   shows current status on how many requests you have made and who is waiting for responses
 #### `clan,<name|id>,food,name,word` -- sends a message to the player specified by `name` or `id` with the 3 answers selected.
 
-#### `mail` - prints clan fortune mail that you've received
+#### `mail`
+  prints clan fortune mail that you've received
 
-#### `(respond|return),<name>,<food>,<character>,<word>`  - responds to the specified person's fortune request with the specified answers.
+#### `(respond|return),<name>,<food>,<character>,<word>`
+  responds to the specified person's fortune request with the specified answers.
 
 There's also a system for making answer templates and using them, which I will include details of later.
 
