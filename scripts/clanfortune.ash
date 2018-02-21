@@ -1562,15 +1562,8 @@ mail [string,string,int] sort_mail_by_name_date(mail [int] raw_mail)
 	}
 	return sorted_mail;
 }
-/*
-visit_url("clan_viplounge.php?preaction=lovetester", false)
-"choice.php?whichchoice=1278&pwd&option=1
-"&which=1"
-"&whichid="
-"&q1="
-"&q2="
-"&q3="
-*/
+
+
 buffer get_initial_url(int choice_id, int option)
 {
 	buffer url_text;
@@ -1592,7 +1585,7 @@ string visit_choicephp(int choice_id, int option, string [string] choices)
 		url_text.append("=");
 		url_text.append(choices[name]);
 	}
-	print(url_text);
+
 	return visit_url(url_text,true);
 }
 string visit_choicephp(int id, string [string] choices)
