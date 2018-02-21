@@ -2134,7 +2134,7 @@ string npc_fortune_select(string npc_string)
 	string fav_char = get_property("clanfortune_2ndAnswer");
 	string fav_word = get_property("clanfortune_3rdAnswer");
 	
-	return npc_fortune_select(name,fav_food,fav_char,fav_word);
+	return npc_fortune_select(npc_string,fav_food,fav_char,fav_word);
 }
 
 	///////////////////////
