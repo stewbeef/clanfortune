@@ -4,14 +4,14 @@ Ok, I've uploaded my script for this you can download it in Kolmafia with the CL
 
 `svn checkout https://github.com/stewbeef/clanfortune/branches/release`
 
-###Note if you installed this before 2/21/2018
+### Note if you installed this before 2/21/2018
 There was a bug and I was learning how to use github, so now the installation is on the release branch.  If you installed before 2/21/2018, then you'll need to remove it with `svn delete clanfortune`).  Then reinstall it with the command above.
-##General Instructions
+### General Instructions
 The following commands are available.  If a word is in these brackets **<>**, then that means it is just a placeholder for the information you will need to put in.  If it is in parathesis **()** that means it is the literal text of the command. If two words are seperated by a line **|**, then that means either word is valid, though it will probably change some part of the command.
 
 Right now all commands are seperated by commans without spaces.  When I retool this, it will learn to accept trailing spaces and discard them.
 
-##Commands
+## Commands
 
 #### `clanfortune help`
   displays some of the information below, but it is pretty basic, and are other commands and things not listed.  I am still working on it.
