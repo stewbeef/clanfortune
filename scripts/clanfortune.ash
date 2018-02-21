@@ -2128,6 +2128,15 @@ string npc_fortune_select(string npc_string, string template_name)
 	return "";
 }
 
+string npc_fortune_select(string npc_string)
+{
+	string fav_food = get_property("clanfortune_1stAnswer");
+	string fav_char = get_property("clanfortune_2ndAnswer");
+	string fav_word = get_property("clanfortune_3rdAnswer");
+	
+	return npc_fortune_select(name,fav_food,fav_char,fav_word);
+}
+
 	///////////////////////
 	//Send to Name
 
@@ -2539,7 +2548,7 @@ void clanfortune_parse(string command)
 			switch(cmd_array.count())
 			{
 				case 2:
-					response = npc_fortune_select(cmd_array[1],"send");
+					response = npc_fortune_select(cmd_array[1]);
 					break;
 				case 3:
 					response = npc_fortune_select(cmd_array[1],cmd_array[2]);
