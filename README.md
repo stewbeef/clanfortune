@@ -36,11 +36,14 @@ Right now all commands are seperated by commans without spaces.  When I retool t
   * `defaults,2nd answer,batman`
   * `defaults,3rd answer,thick`
  
-#### `defaults,info` - this sets the above response/answer choices to the settings used by most bots.  It does not set any contacts.
+#### `defaults,info`
+  this sets the above response/answer choices to the settings used by most bots.  It does not set any contacts.
 
-#### `print defaults` -- prints all set defaults
+#### `print defaults`
+  prints all the current default setting.
 
-#### `npc,<name|type>` - this makes a fortune request to an NPC using the default answers specified above.
+#### `npc,<name|type>`
+  This makes a fortune request to an NPC using the default answers specified above.
   Name and type options are below, along with the buffs they give.  Any of the names/options used to specify the same NPC work the same
 * Name and Type options
   * *Gorgonzola* name/type = `gorgonzola`, `gorgonzola`, `the chief chef (npc)`, `mp`, `myst`, `mysticality`, `the chief chef`
