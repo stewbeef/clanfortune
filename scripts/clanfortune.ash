@@ -1562,15 +1562,8 @@ mail [string,string,int] sort_mail_by_name_date(mail [int] raw_mail)
 	}
 	return sorted_mail;
 }
-/*
-visit_url("clan_viplounge.php?preaction=lovetester", false)
-"choice.php?whichchoice=1278&pwd&option=1
-"&which=1"
-"&whichid="
-"&q1="
-"&q2="
-"&q3="
-*/
+
+
 buffer get_initial_url(int choice_id, int option)
 {
 	buffer url_text;
@@ -1592,7 +1585,7 @@ string visit_choicephp(int choice_id, int option, string [string] choices)
 		url_text.append("=");
 		url_text.append(choices[name]);
 	}
-	print(url_text);
+
 	return visit_url(url_text,true);
 }
 string visit_choicephp(int id, string [string] choices)
@@ -2128,6 +2121,15 @@ string npc_fortune_select(string npc_string, string template_name)
 	return "";
 }
 
+string npc_fortune_select(string npc_string)
+{
+	string fav_food = get_property("clanfortune_1stAnswer");
+	string fav_char = get_property("clanfortune_2ndAnswer");
+	string fav_word = get_property("clanfortune_3rdAnswer");
+	
+	return npc_fortune_select(npc_string,fav_food,fav_char,fav_word);
+}
+
 	///////////////////////
 	//Send to Name
 
@@ -2321,7 +2323,7 @@ void clanfortune_parse(string command)
 			switch(cmd_array.count())
 			{
 				case 2:
-					response = npc_fortune_select(cmd_array[1],"send");
+					response = npc_fortune_select(cmd_array[1]);
 					break;
 				case 3:
 					response = npc_fortune_select(cmd_array[1],cmd_array[2]);
@@ -2528,216 +2530,6 @@ void clanfortune_parse(string command)
 			print("invalid command, type ? or help for help");
 			break;
 	}
-/*	
-	switch(cmd_array[0].to_lower_case())
-	{
-		case "help":
-		case "?":
-			print_clan_fortune_help();
-			break;
-		case "npc":
-			switch(cmd_array.count())
-			{
-				case 2:
-					response = npc_fortune_select(cmd_array[1],"send");
-					break;
-				case 3:
-					response = npc_fortune_select(cmd_array[1],cmd_array[2]);
-					break;
-				case 5:
-					response = npc_fortune_select(cmd_array[1],cmd_array[2],cmd_array[3],cmd_array[4]);
-					break;
-			}
-			//print_html(response);
-			break;
-		case "clan":
-			switch(cmd_array.count())
-			{
-				case 3:
-					response = clan_member_fortune(cmd_array[1],cmd_array[2]);
-					break;
-				case 5:
-					response = clan_member_fortune(cmd_array[1],cmd_array[2],cmd_array[3],cmd_array[4]);
-					break;
-			}
-			//print_html(response);
-			break;
-		case "quicksend":
-			string my1stsend = clan_member_fortune(get_property("clanfortune_1stContact"));
-			string my2ndsend = clan_member_fortune(get_property("clanfortune_2ndContact"));
-			string my3rdsend = clan_member_fortune(get_property("clanfortune_3rdContact"));
-			break;
-		case "status":
-			print_fortune_status();
-			break;
-		case "respond":
-		case "return":
-			switch(cmd_array.count())
-			{
-				case 3:
-					response = return_fortune(cmd_array[1],cmd_array[2]);
-					break;
-				case 5:
-					response = return_fortune(cmd_array[1],cmd_array[2],cmd_array[3],cmd_array[4]);
-					break;
-			}
-			return_fortune(cmd_array[1],cmd_array[2],cmd_array[3],cmd_array[4]);
-			break;
-		case "respond all":
-		case "return all":
-			switch(cmd_array.count())
-			{
-				case 1:
-					return_all_fortunes();
-					break;
-				case 2:
-					response = return_all_fortunes(cmd_array[1]);
-					break;
-				case 4:
-					response = return_all_fortunes(cmd_array[1],cmd_array[2],cmd_array[3]);
-					break;
-			}
-			break;
-		case "mail":
-			print_clanfortune_mail();
-			break;
-		case "write template":
-		case "make template":
-		case "mt":
-		case "wt":
-			Set_ClanFortuneTemplate(cmd_array[1],cmd_array[2],cmd_array[3],cmd_array[4],false);
-			break;
-		case "print template":
-		case "list template":
-		case "lt":
-		case "pt":
-			switch(cmd_array.count())
-			{
-				case 1:
-					Print_Fortune_Templates();
-					break;
-				case 2:
-					Print_Fortune_Template(cmd_array[1]);
-					break;
-			}
-			break;
-		case "favs":
-			string [string] fav_consumes = get_favorite_consumes();
-			print(fav_consumes["food"]);
-			print(fav_consumes["booze"]);
-			break;
-		case "prevday":
-			print(previous_day(cmd_array[1]));
-			break;
-		case "record":
-			switch(cmd_array.count())
-			{
-				case 1:
-					print_html("Recording status: ", get_property("record_clan_fortune_info"));
-					break;
-				case 2:
-					switch(cmd_array[1])
-					{
-						case "on":
-							set_property("record_clan_fortune_info","true");
-							print_html("Recording status: %s", get_property("record_clan_fortune_info"));
-							break;
-						case "off":
-							set_property("record_clan_fortune_info","false");
-							print_html("Recording status: %s", get_property("record_clan_fortune_info"));
-							break;
-						default:
-							print_html("Record command not recognized");
-							break;
-					}
-					
-					break;
-				default:
-					print_html("Record command not recognized");
-					break;
-			}
-			break;
-		case "defaults":
-			switch(cmd_array[1])
-			{
-				case "1st contact":
-					set_property("clanfortune_1stContact",cmd_array[2]);
-					print_html("Default 1st contact: %s", get_property("clanfortune_1stContact"));
-					break;
-				case "2nd contact":
-					set_property("clanfortune_2ndContact",cmd_array[2]);
-					print_html("Default 2nd contact: %s", get_property("clanfortune_2ndContact"));
-					break;
-				case "3rd contact":
-					set_property("clanfortune_3rdContact",cmd_array[2]);
-					print_html("Default 3rd contact: %s", get_property("clanfortune_3rdContact"));
-					break;
-				case "1st response":
-					set_property("clanfortune_1stResponse",cmd_array[2]);
-					print_html("Default 1st response: %s", get_property("clanfortune_1stResponse"));
-					break;
-				case "2nd response":
-					set_property("clanfortune_2ndResponse",cmd_array[2]);
-					print_html("Default 2nd response: %s", get_property("clanfortune_2ndResponse"));
-					break;
-				case "3rd response":
-					set_property("clanfortune_3rdResponse",cmd_array[2]);
-					print_html("Default 3rd response: %s", get_property("clanfortune_3rdResponse"));
-					break;
-				case "1st answer":
-					set_property("clanfortune_1stAnswer",cmd_array[2]);
-					print_html("Default 1st answer: %s", get_property("clanfortune_1stAnswer"));
-					break;
-				case "2nd answer":
-					set_property("clanfortune_2ndAnswer",cmd_array[2]);
-					print_html("Default 2nd answer: %s", get_property("clanfortune_2ndAnswer"));
-					break;
-				case "3rd answer":
-					set_property("clanfortune_3rdAnswer",cmd_array[2]);
-					print_html("Default 3rd answer: %s", get_property("clanfortune_3rdAnswer"));
-					break;
-				default:
-					print_html("%s is not default setting", cmd_array[1]);
-					break;
-			}
-			break;
-		case "print defaults":
-		case "list defaults":
-			print_clanfortune_defaults();
-			break;
-		case "quick defaults":
-			set_property("clanfortune_1stContact","AverageChat");
-			if(my_name().to_lower_case() == "rabbitfoot")
-			{
-				set_property("clanfortune_2ndContact","meowserio");
-				set_property("clanfortune_3rdContact","Stewbeef");
-			}
-			else if(my_name().to_lower_case() == "meowserio")
-			{
-				set_property("clanfortune_2ndContact","Rabbitfoot");
-				set_property("clanfortune_3rdContact","Stewbeef");
-			}
-			else
-			{
-				set_property("clanfortune_2ndContact","Rabbitfoot");
-				set_property("clanfortune_3rdContact","meowserio");
-			
-			}
-			set_property("clanfortune_1stResponse","beer");
-			set_property("clanfortune_2ndResponse","robin");
-			set_property("clanfortune_3rdResponse","thin");
-			set_property("clanfortune_1stAnswer","pizza");
-			set_property("clanfortune_2ndAnswer","batman");
-			set_property("clanfortune_3rdAnswer","thick");
-			
-			
-			print_clanfortune_defaults();
-			break;
-		default:
-			print("invalid command, type ? or help for help");
-			break;
-	}
-*/
 }
 
 void main(string command)
